@@ -1,5 +1,7 @@
 import time
 
+from loguru import logger
+
 from categories.basic_task import Task
 from extra import cascade_owner_id_post_id
 from extra import select_ids_from_labeled_news_feed
@@ -16,6 +18,7 @@ class ClearCommentsTask(Task):
             ids = self.__get_posts_from_news_feed_section_comments()
             # Если понравившиеся кончились, то останавливаем цикл
             if not len(ids):
+                logger.info('Записей не осталось')
                 break
             requests = []
             for identifier in ids:
@@ -26,11 +29,13 @@ class ClearCommentsTask(Task):
                                  'sort': 'asc',
                                  'need_likes': '0',
                                  'count': '100'})
+                logger.trace('Запрос добавлен в очередь')
             for request in requests:
                 while True:
                     # Получаем список комментариев
                     temp_response = self.user_api_request('https://api.vk.com/method/wall.getComments',
                                                           params=request).json()
+                    logger.trace('Комментарии получены')
                     # Нужно, если будет возвращена ошибка
                     try:
                         # Начало запроса - конец предыдущего, т.е смещение
@@ -59,6 +64,7 @@ class ClearCommentsTask(Task):
                                     self.user_api_request(
                                         'https://api.vk.com/method/wall.deleteComment',
                                         params=payload)
+                                    logger.success('Комментарий удален')
                                     break
                             except Exception:
                                 continue
@@ -71,6 +77,7 @@ class ClearCommentsTask(Task):
         try:
             feed_response = self.site_request('https://vk.com/feed?section=comments').text
             ids = select_ids_from_labeled_news_feed(feed_response)
+            logger.trace('Словарь постов извлечен')
             return ids
         except Exception:
             pass

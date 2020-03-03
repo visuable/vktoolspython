@@ -1,3 +1,5 @@
+from loguru import logger
+
 from categories.basic_task import Task
 
 
@@ -10,11 +12,13 @@ class WallCleanerTask(Task):
         # Перебор элементов
         for element in response['response']['items']:
             ids.append(element['id'])
+        logger.trace('Список идентификаторов постов извлечен')
         responses = []
         # Запрос на удаление поста
         for identifier in ids:
             payload = {'post_id': identifier}
             responses.append(self.__wall_delete_request(payload))
+            logger.success('Пост удален')
         return responses
 
     def __wall_delete_request(self, payload):
