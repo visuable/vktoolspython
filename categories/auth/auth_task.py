@@ -8,11 +8,11 @@ from extra import parse_token
 class AuthTask(Task):
     __login = ''
     __password = ''
-    session = requests.session()
 
     def __init__(self, login, password):
         self.__login = login
         self.__password = password
+        self.session = requests.session()
 
     def run(self):
         authorization_response = self.__http_authorize()
