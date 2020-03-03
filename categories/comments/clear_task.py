@@ -6,10 +6,8 @@ from extra import select_ids_from_labeled_news_feed
 
 
 class ClearCommentsTask(Task):
-    __user_identifier = ''
 
-    def __init__(self, params, user_identifier):
-        self.__user_identifier = user_identifier
+    def __init__(self, params):
         super(ClearCommentsTask, self).__init__(params=params)
 
     def run(self):
@@ -52,8 +50,9 @@ class ClearCommentsTask(Task):
                         for item in temp_response['response']['items']:
                             # Тут может быть возвращена ошибка, поэтому блок обернут в try
                             try:
-                                # Проверка, если отправил данный пользователей, то удаляем комментарий
-                                if int(self.__user_identifier) == int(item['from_id']):
+                                # Получаем id текущего пользователя, если он совпадает, то удаляем комментарий
+                                current_id = self.user_api_request('https://api.vk.com/method/users.get').json()
+                                if current_id['response']['id'] == item['from_id']:
                                     payload = {
                                         'owner_id': item['owner_id'],
                                         'comment_id': item['id']}

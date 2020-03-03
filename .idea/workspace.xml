@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d6cdcd37-94a5-4b2c-910d-366f65e876f8" name="Default Changelist" comment="" />
+    <list default="true" id="d6cdcd37-94a5-4b2c-910d-366f65e876f8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/categories/auth/auth_task/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/auth/auth_task.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/categories/basic_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/basic_task.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/categories/comments/bot_task/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/comments/bot_task.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/categories/comments/clear_task/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/comments/clear_task.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/categories/newsfeed/clear_task/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/newsfeed/clear_task.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/categories/wall/clear_task/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/wall/clear_task.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,11 +27,12 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/vkapi" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1UYaiUTmSwGTMvTmHPt0LXMyaHr" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
@@ -36,11 +48,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Nikita Korabelnikov\Desktop\проект\vktools\categories\auth" />
-      <recent name="C:\Users\Nikita Korabelnikov\Desktop\проект\vktools\extra" />
-      <recent name="C:\Users\Nikita Korabelnikov\Desktop\проект\vktools\category\auth" />
-      <recent name="C:\Users\Nikita Korabelnikov\Desktop\проект\vktools\category\comments" />
-      <recent name="C:\Users\Nikita Korabelnikov\Desktop\проект\vktools\category\comments\bot_task" />
+      <recent name="C:\Users\Nikita Korabelnikov\Desktop\vktools" />
+      <recent name="C:\Users\Nikita Korabelnikov\Desktop\vktools\categories\wall" />
+      <recent name="C:\Users\Nikita Korabelnikov\Desktop\vktools\categories\newsfeed" />
+      <recent name="C:\Users\Nikita Korabelnikov\Desktop\vktools\categories\comments" />
+      <recent name="C:\Users\Nikita Korabelnikov\Desktop\vktools\categories\comments\bot_task" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -207,9 +219,14 @@
           <option name="timeStamp" value="93" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/categories/comments/bot_task/__init__.py</url>
+          <url>file://$PROJECT_DIR$/categories/comments/bot_task.py</url>
           <line>17</line>
           <option name="timeStamp" value="95" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/categories/auth/auth_task.py</url>
+          <line>31</line>
+          <option name="timeStamp" value="97" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
