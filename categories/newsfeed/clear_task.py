@@ -19,6 +19,9 @@ class ClearLikesTask(Task):
              'topic_comment',
              'sitepage']
 
+    def __init__(self, settings):
+        super(ClearLikesTask, self).__init__(settings)
+
     def run(self):
         while True:
             ids = self.__get_posts_from_news_feed_section_likes()

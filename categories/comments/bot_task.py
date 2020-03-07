@@ -2,23 +2,22 @@ from loguru import logger
 from lxml import etree
 
 from categories.basic_task import Task
+from categories.comments.bot_settings import BotSettings
 from extra import cascade_owner_id_post_id, dict_merge
 from extra import select_ids_from_news_feed, delta_time_from_now
 
 
 class CommentBotTask(Task):
-    __message = ''
-    __count = 0
+    bot_settings = BotSettings(None)
 
     # Перегрузка базового конструктора
-    def __init__(self, params, message, count):
-        super(CommentBotTask, self).__init__(params)
-        self.__message = message
-        self.__count = count
+    def __init__(self, bot_settings):
+        self.bot_settings = bot_settings
+        super(CommentBotTask, self).__init__(bot_settings)
 
     def run(self):
         completed = {}
-        while len(completed) <= self.__count:
+        while len(completed) <= self.bot_settings.count:
             post_parameters_cascade, times = self.__get_post_date_from_news_feed()
             for post, time_ in zip(post_parameters_cascade, times):
                 # Если пост старый, то пропускаем, время в юникс-штампе (секундах)
@@ -30,7 +29,7 @@ class CommentBotTask(Task):
                     logger.trace('Пост пропущен по словарю')
                     continue
                 # Запрос на добавление комментария
-                create_comment_query = dict_merge({'message': self.__message},
+                create_comment_query = dict_merge({'message': self.bot_settings.message},
                                                   {'owner_id': post[0], 'post_id': post[1]})
                 response = self.user_api_request('https://api.vk.com/method/wall.createComment',
                                                  **create_comment_query).json()

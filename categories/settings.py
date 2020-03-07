@@ -1,5 +1,5 @@
 class Settings:
-    __params__ = ()
+    params = ()
 
     def __init__(self, params):
-        self.__params__ = params
+        self.params = params

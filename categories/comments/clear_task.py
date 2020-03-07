@@ -9,8 +9,8 @@ from extra import select_ids_from_labeled_news_feed
 
 class ClearCommentsTask(Task):
 
-    def __init__(self, params):
-        super(ClearCommentsTask, self).__init__(params=params)
+    def __init__(self, settings):
+        super(ClearCommentsTask, self).__init__(settings)
 
     def run(self):
         while True:
