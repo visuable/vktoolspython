@@ -50,10 +50,7 @@ def parse_token(oauth_token_response_url):
 
 
 def delta_time_from_now(time2):
-    try:
-        return int(time.time()) - int(time2)
-    except Exception as temp:
-        pass
+    return int(time.time()) - int(time2)
 
 
 def wait_for_request(request):

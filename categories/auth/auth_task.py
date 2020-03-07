@@ -1,9 +1,8 @@
-from loguru import logger
 from lxml import etree
 
 from categories.auth.auth_settings import AuthSettings
 from categories.basic_task import Task
-from constants import OAUTH_AUTH, REDIRECT_URI, VK_MOBILE
+from constants import OAUTH_AUTH, REDIRECT_URI, VK_MOBILE, CLIENT_ID, RESPONSE_TYPE, SCOPE, REVOKE
 from extra import parse_token
 
 
@@ -15,14 +14,11 @@ class AuthTask(Task):
 
     def run(self):
         authorization_response = self.__http_authorize()
-        # Если прошла авторизация, то остался список cookie-файлов сайта
+        # Если прошла авторизация, то остался список cookie-файлов вк
         if authorization_response.cookies:
-            logger.info('Успешно авторизовано')
-            # TODO: спрятать client_id
             oauth_token_response_url = self.__get_token_request()
             try:
                 token_string = parse_token(oauth_token_response_url)
-                logger.info('Токен распознан')
                 # Возращаем кортеж, состоящий из сессии и токена для выполнения запросов к API
                 return self.session, token_string
             except Exception:
@@ -31,11 +27,10 @@ class AuthTask(Task):
 
     def __get_token_request(self):
         oauth_token_response_url = self.site_request(OAUTH_AUTH,
-                                                     response_type='token', client_id='7203136',
+                                                     response_type=RESPONSE_TYPE, client_id=CLIENT_ID,
                                                      redirect_uri=REDIRECT_URI,
-                                                     revoke='0', scope='wall'
+                                                     revoke=REVOKE, scope=SCOPE
                                                      ).url
-        logger.trace('URL, содержащий токен получен')
         return oauth_token_response_url
 
     def __http_authorize(self):
@@ -46,7 +41,6 @@ class AuthTask(Task):
         # Извлечение этого аттрибута через XPath
         xpath_parser = etree.HTML(vk_mobile_html_form_response_text)
         action_string = xpath_parser.xpath('//form')[0].attrib['action']
-        logger.trace('URL для авторизации получен')
         # Параметры на запрос авторизации
         authorization_response = self.site_request(action_string, **{
             'email': self.auth_settings.login,

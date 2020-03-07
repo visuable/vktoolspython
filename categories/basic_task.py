@@ -4,7 +4,6 @@ from extra import *
 
 
 class Task:
-    # TODO: проверить методы запросов
     session = requests.Session()
     token = ''
 

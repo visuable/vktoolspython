@@ -2,13 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6cdcd37-94a5-4b2c-910d-366f65e876f8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/constants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/categories/auth/auth_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/auth/auth_task.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/categories/basic_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/basic_task.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/categories/comments/bot_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/comments/bot_settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/categories/comments/bot_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/comments/bot_task.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/categories/comments/clear_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/comments/clear_task.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/categories/newsfeed/clear_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/newsfeed/clear_task.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/categories/wall/clear_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/wall/clear_task.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extra.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -219,18 +223,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/categories/comments/bot_task.py</url>
-          <line>19</line>
+          <line>18</line>
           <option name="timeStamp" value="101" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/categories/comments/bot_task.py</url>
-          <line>22</line>
+          <line>21</line>
           <option name="timeStamp" value="103" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/categories/comments/bot_task.py</url>
-          <line>45</line>
-          <option name="timeStamp" value="104" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/extra.py</url>
@@ -241,6 +240,11 @@
           <url>file://$PROJECT_DIR$/extra.py</url>
           <line>15</line>
           <option name="timeStamp" value="108" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/categories/auth/auth_task.py</url>
+          <line>17</line>
+          <option name="timeStamp" value="109" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
