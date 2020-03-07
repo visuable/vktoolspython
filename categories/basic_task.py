@@ -28,4 +28,4 @@ class Task:
     def site_request(self, url, **params):
         if len(params) != 0:
             return wait_for_request(lambda: self.session.post(url, params=params))
-        return wait_for_request(lambda: self.session.get(url))
+        return wait_for_request(lambda: self.session.post(url))
