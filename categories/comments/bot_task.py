@@ -38,6 +38,8 @@ class CommentBotTask(Task):
                 if 'response' in response:
                     completed[str(post)] = response['response']
                     logger.success('Комментарий оставлен и добавлен в словарь')
+                else:
+                    logger.warning('Комментарий не добавлен' + str(response))
 
     def __get_post_date_from_news_feed(self):
         # Получаем страницу новостей

@@ -16,7 +16,7 @@ if __name__ == '__main__':
     if task_number == '1':
         message = input('Введите текст комментария: \n')
         count = input('Введите количество комментариев: \n')
-        bot = CommentBotTask(params, message, int(count))
+        bot = CommentBotTask(params, message, int(count)).run()
         pass
     if task_number == '2':
         clear = ClearCommentsTask(params).run()
