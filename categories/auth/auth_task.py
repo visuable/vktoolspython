@@ -1,19 +1,16 @@
-import requests
 from loguru import logger
 from lxml import etree
 
+from categories.auth.auth_settings import AuthSettings
 from categories.basic_task import Task
 from extra import parse_token
 
 
 class AuthTask(Task):
-    __login = ''
-    __password = ''
+    auth_settings = AuthSettings('', '')
 
-    def __init__(self, login, password):
-        self.__login = login
-        self.__password = password
-        self.session = requests.session()
+    def __init__(self, auth_settings):
+        self.auth_settings = auth_settings
 
     def run(self):
         authorization_response = self.__http_authorize()
@@ -51,8 +48,8 @@ class AuthTask(Task):
         logger.trace('URL для авторизации получен')
         # Параметры на запрос авторизации
         authorization_response = self.site_request(action_string, **{
-            'email': self.__login,
-            'pass': self.__password
+            'email': self.auth_settings.login,
+            'pass': self.auth_settings.password
         }
                                                    )
         return authorization_response

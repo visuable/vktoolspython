@@ -7,6 +7,8 @@ from categories.basic_task import Task
 
 class WallCleanerTask(Task):
 
+    def __init__(self, settings):
+        super(WallCleanerTask, self).__init__(settings)
     def run(self):
         # Запрос на получение всех постов со стены
         while True:
@@ -26,7 +28,6 @@ class WallCleanerTask(Task):
                 responses.append(self.__wall_delete_request(payload))
                 logger.success('Пост удален')
             time.sleep(3)
-        return responses
 
     def __wall_delete_request(self, payload):
         return self.user_api_request('https://api.vk.com/method/wall.delete', **payload)

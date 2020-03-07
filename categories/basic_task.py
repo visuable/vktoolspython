@@ -1,16 +1,18 @@
+import requests
+
 from extra import *
 
 
 class Task:
     # TODO: проверить методы запросов
-    session = None
+    session = requests.Session()
     token = ''
 
-    def __init__(self, params):
-        if not len(params):
+    def __init__(self, settings):
+        if not len(settings.params):
             return
-        self.session = params[0]
-        self.token = params[1]
+        self.session = settings.params[0]
+        self.token = settings.params[1]
 
     def run(self):
         pass
