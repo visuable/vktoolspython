@@ -3,6 +3,7 @@ from lxml import etree
 
 from categories.auth.auth_settings import AuthSettings
 from categories.basic_task import Task
+from constants import OAUTH_AUTH, REDIRECT_URI, VK_MOBILE
 from extra import parse_token
 
 
@@ -29,9 +30,9 @@ class AuthTask(Task):
         return False
 
     def __get_token_request(self):
-        oauth_token_response_url = self.site_request('https://oauth.vk.com/authorize',
+        oauth_token_response_url = self.site_request(OAUTH_AUTH,
                                                      response_type='token', client_id='7203136',
-                                                     redirect_uri='https://oauth.vk.com/blank.html',
+                                                     redirect_uri=REDIRECT_URI,
                                                      revoke='0', scope='wall'
                                                      ).url
         logger.trace('URL, содержащий токен получен')
@@ -41,7 +42,7 @@ class AuthTask(Task):
         # Запрос на получение HTML формы с мобильной версии сайта
         # Это необходимо, чтобы получить аттрибут action, в котором содержится адрес
         # Через который следует передать пароль и логин
-        vk_mobile_html_form_response_text = self.site_request('https://m.vk.com').text
+        vk_mobile_html_form_response_text = self.site_request(VK_MOBILE).text
         # Извлечение этого аттрибута через XPath
         xpath_parser = etree.HTML(vk_mobile_html_form_response_text)
         action_string = xpath_parser.xpath('//form')[0].attrib['action']

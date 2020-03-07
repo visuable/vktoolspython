@@ -3,6 +3,7 @@ import time
 from loguru import logger
 
 from categories.basic_task import Task
+from constants import WALL_DELETE, WALL_GET
 
 
 class WallCleanerTask(Task):
@@ -30,8 +31,8 @@ class WallCleanerTask(Task):
             time.sleep(3)
 
     def __wall_delete_request(self, payload):
-        return self.user_api_request('https://api.vk.com/method/wall.delete', **payload)
+        return self.user_api_request(WALL_DELETE, **payload)
 
     def __wall_get_request(self):
-        response = self.user_api_request('https://api.vk.com/method/wall.get').json()
+        response = self.user_api_request(WALL_GET).json()
         return response

@@ -3,6 +3,7 @@ import time
 from loguru import logger
 
 from categories.basic_task import Task
+from constants import GET_COMMENTS, USERS_GET, DELETE_COMMENTS, VK_COMMENTS_FEED
 from extra import cascade_owner_id_post_id
 from extra import select_ids_from_labeled_news_feed
 
@@ -33,7 +34,7 @@ class ClearCommentsTask(Task):
             for request in requests:
                 while True:
                     # Получаем список комментариев
-                    temp_response = self.user_api_request('https://api.vk.com/method/wall.getComments',
+                    temp_response = self.user_api_request(GET_COMMENTS,
                                                           params=request).json()
                     logger.trace('Комментарии получены')
                     # Нужно, если будет возвращена ошибка
@@ -56,13 +57,13 @@ class ClearCommentsTask(Task):
                             # Тут может быть возвращена ошибка, поэтому блок обернут в try
                             try:
                                 # Получаем id текущего пользователя, если он совпадает, то удаляем комментарий
-                                current_id = self.user_api_request('https://api.vk.com/method/users.get').json()
+                                current_id = self.user_api_request(USERS_GET).json()
                                 if current_id['response']['id'] == item['from_id']:
                                     payload = {
                                         'owner_id': item['owner_id'],
                                         'comment_id': item['id']}
                                     self.user_api_request(
-                                        'https://api.vk.com/method/wall.deleteComment',
+                                        DELETE_COMMENTS,
                                         params=payload)
                                     logger.success('Комментарий удален')
                                     break
@@ -75,7 +76,7 @@ class ClearCommentsTask(Task):
 
     def __get_posts_from_news_feed_section_comments(self):
         try:
-            feed_response = self.site_request('https://vk.com/feed?section=comments').text
+            feed_response = self.site_request(VK_COMMENTS_FEED).text
             ids = select_ids_from_labeled_news_feed(feed_response)
             logger.trace('Словарь постов извлечен')
             return ids
