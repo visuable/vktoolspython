@@ -2,7 +2,7 @@ from lxml import etree
 
 from categories.basic_task import Task
 from categories.comments.bot_settings import BotSettings
-from constants import CREATE_COMMENT, VK_FEED
+from constants import WALL_CREATE_COMMENT, VK_FEED
 from extra import cascade_owner_id_post_id, dict_merge
 from extra import select_ids_from_news_feed, delta_time_from_now
 
@@ -29,7 +29,7 @@ class CommentBotTask(Task):
                 # Запрос на добавление комментария
                 create_comment_query = dict_merge({'message': self.bot_settings.message},
                                                   {'owner_id': post[0], 'post_id': post[1]})
-                response = self.user_api_request(CREATE_COMMENT,
+                response = self.user_api_request(WALL_CREATE_COMMENT,
                                                  **create_comment_query).json()
                 # Если запрос прошел, то добавляем идентификатор поста в список завершенных задач
                 if 'response' in response:

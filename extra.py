@@ -46,7 +46,7 @@ def parse_token(oauth_token_response_url):
         token_string = re.findall('access_token=([^&]*)', oauth_token_response_url)[0]
         return token_string
     except Exception:
-        logger.exception('ошибка получения access_token')
+        pass
 
 
 def delta_time_from_now(time2):

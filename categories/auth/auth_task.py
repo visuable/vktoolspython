@@ -1,8 +1,13 @@
+import json
+import os
+
+import requests
 from lxml import etree
 
 from categories.auth.auth_settings import AuthSettings
 from categories.basic_task import Task
-from constants import OAUTH_AUTH, REDIRECT_URI, VK_MOBILE, CLIENT_ID, RESPONSE_TYPE, SCOPE, REVOKE
+from constants import OAUTH_AUTH, REDIRECT_URI, VK_MOBILE, CLIENT_ID, RESPONSE_TYPE, SCOPE, REVOKE, VERSION, STATE, \
+    USERS_GET
 from extra import parse_token
 
 
@@ -11,27 +16,28 @@ class AuthTask(Task):
 
     def __init__(self, auth_settings):
         self.auth_settings = auth_settings
+        super(AuthTask, self).__init__(auth_settings)
 
     def run(self):
         authorization_response = self.__http_authorize()
         # Если прошла авторизация, то остался список cookie-файлов вк
         if authorization_response.cookies:
             oauth_token_response_url = self.__get_token_request()
-            try:
-                token_string = parse_token(oauth_token_response_url)
-                # Возращаем кортеж, состоящий из сессии и токена для выполнения запросов к API
-                return self.session, token_string
-            except Exception:
-                pass
-        return False
+            token_string = parse_token(oauth_token_response_url)
+            if token_string is None:
+                return oauth_token_response_url
+            # Возращаем кортеж, состоящий из сессии и токена для выполнения запросов к API
+            user_id = self.user_api_request(USERS_GET)['response']['id']
+            return self.session, token_string, user_id
 
     def __get_token_request(self):
         oauth_token_response_url = self.site_request(OAUTH_AUTH,
                                                      response_type=RESPONSE_TYPE, client_id=CLIENT_ID,
                                                      redirect_uri=REDIRECT_URI,
-                                                     revoke=REVOKE, scope=SCOPE
-                                                     ).url
-        return oauth_token_response_url
+                                                     revoke=REVOKE, scope=SCOPE,
+                                                     v=VERSION, state=STATE
+                                                     )
+        return oauth_token_response_url.url
 
     def __http_authorize(self):
         # Запрос на получение HTML формы с мобильной версии сайта
@@ -47,4 +53,5 @@ class AuthTask(Task):
             'pass': self.auth_settings.password
         }
                                                    )
+
         return authorization_response
