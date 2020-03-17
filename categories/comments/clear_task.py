@@ -1,7 +1,7 @@
 import time
 
 from categories.basic_task import Task
-from constants import GET_COMMENTS, USERS_GET, DELETE_COMMENTS, VK_COMMENTS_FEED
+from constants import WALL_GET_COMMENTS, USERS_GET, WALL_DELETE_COMMENTS, VK_COMMENTS_FEED
 from extra import cascade_owner_id_post_id
 from extra import select_ids_from_labeled_news_feed
 
@@ -28,45 +28,24 @@ class ClearCommentsTask(Task):
                                  'need_likes': '0',
                                  'count': '100'})
             for request in requests:
+                responses = []
                 while True:
                     # Получаем список комментариев
-                    temp_response = self.user_api_request(GET_COMMENTS,
-                                                          params=request).json()
-                    # Нужно, если будет возвращена ошибка
-                    try:
-                        # Начало запроса - конец предыдущего, т.е смещение
-                        request['start_comment_id'] = temp_response['response']['items'][-1]['id']
-                    except Exception:
-                        break
-                    if 'real_offset' not in temp_response['response']:
-                        continue
-                    # Ключ может не всегда быть в словаре, и если его нет будет выдано исключение
-                    real_offset_count = int(temp_response['response']['real_offset'])
-                    # -1 не работает: real_offset всегда на 1 меньше, а current_level_count на 1 больше
-                    full_count = (int(temp_response['response']['current_level_count']) - 2)
-                    # Чтобы всегда было смещение, нужно сделать так,
-                    # Чтобы количество полученных комментариев было меньше,
-                    # Чем их общее кол-во
-                    if real_offset_count <= full_count:
-                        for item in temp_response['response']['items']:
-                            # Тут может быть возвращена ошибка, поэтому блок обернут в try
-                            try:
-                                # Получаем id текущего пользователя, если он совпадает, то удаляем комментарий
-                                current_id = self.user_api_request(USERS_GET).json()
-                                if current_id['response']['id'] == item['from_id']:
-                                    payload = {
-                                        'owner_id': item['owner_id'],
-                                        'comment_id': item['id']}
-                                    self.user_api_request(
-                                        DELETE_COMMENTS,
-                                        params=payload)
-                                    break
-                            except Exception:
-                                continue
-                    else:
+                    temp_response = self.user_api_request(WALL_GET_COMMENTS,
+                                                          **request).json()
+                    responses.append(temp_response)
+                    # Задаем смещение
+                    last_post_id = temp_response['response']['items'][-1]['id']
+                    request['start_comment_id'] = last_post_id
+                    if len(temp_response['response']['items']) < 100:
                         break
                     # По документации: частота обращения не чаще, чем в раз в 3 секунды
                     time.sleep(3)
+                for response in responses:
+                    for item in response['response']['items']:
+                        if self.user_id == item['from_id']:
+                            self.user_api_request(WALL_DELETE)
+
 
     def __get_posts_from_news_feed_section_comments(self):
         try:

@@ -1,17 +1,21 @@
 import requests
+from requests.cookies import RequestsCookieJar
 
 from extra import *
 
 
 class Task:
-    session = requests.Session()
+    session = requests.session()
     token = ''
+    user_id = ''
 
     def __init__(self, settings):
-        if not len(settings.params):
+        params = settings.params
+        if not len():
             return
-        self.session = settings.params[0]
-        self.token = settings.params[1]
+        self.session = params[0]
+        self.token = params[1]
+        self.user_id = params[2]
 
     def run(self):
         pass
@@ -26,7 +30,16 @@ class Task:
             return wait_for_request(lambda: self.session.post(url, params=advanced_methods_initial_api_query))
         return wait_for_request(lambda: self.session.post(url, params=advanced_methods_initial_api_query))
 
-    def site_request(self, url, **params):
+    def site_request(self, url, request_type='POST', **params):
         if len(params) != 0:
-            return wait_for_request(lambda: self.session.post(url, params=params))
-        return wait_for_request(lambda: self.session.post(url))
+            if request_type == 'GET':
+                return wait_for_request(lambda: self.session.get(url, params=params))
+            if request_type == 'POST':
+                return wait_for_request(lambda: self.session.post(url, params=params))
+            else:
+                return False
+        else:
+            if request_type == 'GET':
+                return wait_for_request(lambda: self.session.get(url))
+            if request_type == 'POST':
+                return wait_for_request(lambda: self.session.post(url))

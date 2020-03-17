@@ -5,11 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/categories/auth/auth_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/auth/auth_task.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/categories/basic_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/basic_task.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/categories/comments/bot_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/comments/bot_settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/categories/comments/bot_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/comments/bot_task.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/categories/comments/clear_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/comments/clear_task.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/categories/newsfeed/clear_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/newsfeed/clear_task.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/categories/wall/clear_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/wall/clear_task.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/constants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/extra.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
@@ -39,7 +36,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -232,19 +229,9 @@
           <option name="timeStamp" value="103" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/extra.py</url>
-          <line>8</line>
-          <option name="timeStamp" value="107" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/extra.py</url>
-          <line>15</line>
-          <option name="timeStamp" value="108" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/categories/auth/auth_task.py</url>
-          <line>17</line>
-          <option name="timeStamp" value="109" />
+          <url>file://$PROJECT_DIR$/categories/comments/clear_task.py</url>
+          <line>33</line>
+          <option name="timeStamp" value="128" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
