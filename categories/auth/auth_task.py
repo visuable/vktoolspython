@@ -1,14 +1,10 @@
-import json
-import os
-
-import requests
 from lxml import etree
 
 from categories.auth.auth_settings import AuthSettings
 from categories.basic_task import Task
-from constants import OAUTH_AUTH, REDIRECT_URI, VK_MOBILE, CLIENT_ID, RESPONSE_TYPE, SCOPE, REVOKE, VERSION, STATE, \
+from categories.utils.constants import OAUTH_AUTH, REDIRECT_URI, VK_MOBILE, CLIENT_ID, RESPONSE_TYPE, SCOPE, REVOKE, VERSION, STATE, \
     USERS_GET
-from extra import parse_token
+from categories.utils.extra import parse_token
 
 
 class AuthTask(Task):
@@ -26,9 +22,12 @@ class AuthTask(Task):
             token_string = parse_token(oauth_token_response_url)
             if token_string is None:
                 return oauth_token_response_url
-            # Возращаем кортеж, состоящий из сессии и токена для выполнения запросов к API
-            user_id = self.user_api_request(USERS_GET)['response']['id']
-            return self.session, token_string, user_id
+            # Возращаем кортеж, состоящий из сессии, токена
+            # и идентификатора текущего пользователя для выполнения запросов к API
+            self.token = token_string
+            # Получение id текущего пользователя
+            user_id = self.user_api_request(USERS_GET)['response'][0]['id']
+            return self.session, self.token, user_id
 
     def __get_token_request(self):
         oauth_token_response_url = self.site_request(OAUTH_AUTH,
