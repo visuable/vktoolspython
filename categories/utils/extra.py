@@ -1,36 +1,28 @@
 import re
 import time
 
-from loguru import logger
 from lxml import etree
 
 
 def select_ids_from_news_feed(feed_response):
     document = etree.HTML(feed_response)
     feed_rows = document.xpath('.//div[@class="feed_row "]/div/@data-post-id')
-    ids = [feed_row.replace('video', '').replace('photo', '') for feed_row in feed_rows]
+    ids = extract_rows(feed_rows)
     return ids
 
 
 def select_ids_from_labeled_news_feed(feed_response):
     document = etree.HTML(feed_response)
     feed_rows = document.xpath('.//div[@class="feed_row"]/div/@data-post-id')
-    ids = [feed_row.replace('video', '').replace('photo', '') for feed_row in feed_rows]
+    ids = extract_rows(feed_rows)
     return ids
 
 
-def cascade_owner_id_post_id(ids):
-    cascades = []
-    if isinstance(ids, list):
-        for identifier in ids:
-            cascades.append(__split_post_string(identifier))
-        return cascades
-    else:
-        return __split_post_string(ids)
-
-
-def __split_post_string(identifier):
-    return identifier.split('_')[0], identifier.split('_')[1]
+def extract_rows(feed_rows):
+    ids = []
+    for feed_row in feed_rows:
+        ids.append(re.findall(pattern='\d+', string=feed_row))
+    return ids
 
 
 def join_posts(ids):

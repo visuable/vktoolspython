@@ -1,7 +1,6 @@
 import requests
-from requests.cookies import RequestsCookieJar
 
-from extra import *
+from categories.utils.extra import *
 
 
 class Task:
@@ -11,7 +10,7 @@ class Task:
 
     def __init__(self, settings):
         params = settings.params
-        if not len():
+        if not len(params):
             return
         self.session = params[0]
         self.token = params[1]
@@ -27,8 +26,8 @@ class Task:
         }
         if len(params):
             advanced_methods_initial_api_query = dict_merge(advanced_methods_initial_api_query, params)
-            return wait_for_request(lambda: self.session.post(url, params=advanced_methods_initial_api_query))
-        return wait_for_request(lambda: self.session.post(url, params=advanced_methods_initial_api_query))
+            return wait_for_request(lambda: self.session.post(url, params=advanced_methods_initial_api_query)).json()
+        return wait_for_request(lambda: self.session.post(url, params=advanced_methods_initial_api_query)).json()
 
     def site_request(self, url, request_type='POST', **params):
         if len(params) != 0:

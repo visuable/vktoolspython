@@ -1,9 +1,9 @@
 import time
 
 from categories.basic_task import Task
-from constants import TYPES, LIKES_DELETE, VK_LIKES_FEED
-from extra import cascade_owner_id_post_id
-from extra import select_ids_from_labeled_news_feed
+from categories.utils.constants import TYPES, LIKES_DELETE, VK_LIKES_FEED
+from categories.utils.extra import cascade_owner_id_post_id
+from categories.utils.extra import select_ids_from_labeled_news_feed
 
 
 class ClearLikesTask(Task):
@@ -13,19 +13,19 @@ class ClearLikesTask(Task):
 
     def run(self):
         while True:
-            ids = self.__get_posts_from_news_feed_section_likes()
-            if not len(ids):
+            identifiers = self.__get_posts_from_news_feed_section_likes()
+            if not len(identifiers):
                 break
             # Каждый запрос на 4 типа: если запрос проходит, то цикл останавливается
-            for identifier in ids:
+            for identifier in identifiers:
                 (owner_id, post_id) = cascade_owner_id_post_id(identifier)
-                for type_ in TYPES:
+                for request_type in TYPES:
                     # Задержка из-за ограничения по документации метода
-                    time.sleep(5)
+                    time.sleep(3)
                     # Запрос на удаление лайка
                     likes_delete_response = self.__likes_delete_request({'owner_id': owner_id,
                                                                          'item_id': post_id,
-                                                                         'type': type_})
+                                                                         'type': request_type})
                     try:
                         if int(likes_delete_response['response']['likes']):
                             break

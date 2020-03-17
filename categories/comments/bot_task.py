@@ -2,9 +2,9 @@ from lxml import etree
 
 from categories.basic_task import Task
 from categories.comments.bot_settings import BotSettings
-from constants import WALL_CREATE_COMMENT, VK_FEED
-from extra import cascade_owner_id_post_id, dict_merge
-from extra import select_ids_from_news_feed, delta_time_from_now
+from categories.utils.constants import WALL_CREATE_COMMENT, VK_FEED
+from categories.utils.extra import dict_merge
+from categories.utils.extra import select_ids_from_news_feed, delta_time_from_now
 
 
 class CommentBotTask(Task):
@@ -30,16 +30,15 @@ class CommentBotTask(Task):
                 create_comment_query = dict_merge({'message': self.bot_settings.message},
                                                   {'owner_id': post[0], 'post_id': post[1]})
                 response = self.user_api_request(WALL_CREATE_COMMENT,
-                                                 **create_comment_query).json()
+                                                 **create_comment_query)
                 # Если запрос прошел, то добавляем идентификатор поста в список завершенных задач
-                if 'response' in response:
-                    completed[str(post)] = response['response']
+                print(response)
 
     def __get_post_date_from_news_feed(self):
         # Получаем страницу новостей
         feed_html_response_text = self.site_request(VK_FEED).text
         # Извлекаем отсюда все идентификаторы постов
-        post_parameters_cascade = cascade_owner_id_post_id(select_ids_from_news_feed(feed_html_response_text))
+        post_parameters_cascade = select_ids_from_news_feed(feed_html_response_text)
         # Из них достаем даты с помощью XPath
         times = etree.HTML(feed_html_response_text).xpath('//span[@class=\'rel_date rel_date_needs_update\']/@time')
         return post_parameters_cascade, times

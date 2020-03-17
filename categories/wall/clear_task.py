@@ -1,7 +1,7 @@
 import time
 
 from categories.basic_task import Task
-from constants import WALL_DELETE, WALL_GET
+from categories.utils.constants import WALL_DELETE, WALL_GET
 
 
 class WallCleanerTask(Task):
