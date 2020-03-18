@@ -1,7 +1,7 @@
 import time
 
 from categories.basic_task import Task
-from categories.comments.spammer_settings import SpammerSettings
+from categories.settings.spammer_settings import SpammerSettings
 from categories.utils.constants import WALL_GET, WALL_CREATE_COMMENT
 
 

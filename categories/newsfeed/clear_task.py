@@ -2,7 +2,6 @@ import time
 
 from categories.basic_task import Task
 from categories.utils.constants import TYPES, LIKES_DELETE, VK_LIKES_FEED
-from categories.utils.extra import cascade_owner_id_post_id
 from categories.utils.extra import select_ids_from_labeled_news_feed
 
 

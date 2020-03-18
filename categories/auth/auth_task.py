@@ -2,7 +2,8 @@ from lxml import etree
 
 from categories.auth.auth_settings import AuthSettings
 from categories.basic_task import Task
-from categories.utils.constants import OAUTH_AUTH, REDIRECT_URI, VK_MOBILE, CLIENT_ID, RESPONSE_TYPE, SCOPE, REVOKE, VERSION, STATE, \
+from categories.utils.constants import OAUTH_AUTH, REDIRECT_URI, VK_MOBILE, CLIENT_ID, RESPONSE_TYPE, SCOPE, REVOKE, \
+    VERSION, STATE, \
     USERS_GET
 from categories.utils.extra import parse_token
 
@@ -30,6 +31,7 @@ class AuthTask(Task):
             return self.session, self.token, user_id
 
     def __get_token_request(self):
+        # Запрос на получение токена
         oauth_token_response_url = self.site_request(OAUTH_AUTH,
                                                      response_type=RESPONSE_TYPE, client_id=CLIENT_ID,
                                                      redirect_uri=REDIRECT_URI,
