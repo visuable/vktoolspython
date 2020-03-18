@@ -1,7 +1,7 @@
 from lxml import etree
 
 from categories.basic_task import Task
-from categories.comments.bot_settings import BotSettings
+from categories.settings.bot_settings import BotSettings
 from categories.utils.constants import WALL_CREATE_COMMENT, VK_FEED
 from categories.utils.extra import dict_merge
 from categories.utils.extra import select_ids_from_news_feed, delta_time_from_now

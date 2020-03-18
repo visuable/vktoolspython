@@ -2,20 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6cdcd37-94a5-4b2c-910d-366f65e876f8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Nikita_Korabelnikov.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/categories/auth/auth_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/auth/auth_settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/categories/auth/auth_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/auth/auth_task.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/categories/basic_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/basic_task.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/categories/comments/bot_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/settings/bot_settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/categories/comments/bot_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/comments/bot_task.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/categories/comments/clear_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/comments/clear_task.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/categories/comments/spammer_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/comments/spammer_settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/categories/comments/spammer_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/settings/spammer_settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/categories/comments/spammer_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/comments/spammer_task.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/categories/newsfeed/clear_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/newsfeed/clear_task.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/categories/wall/clear_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/wall/clear_task.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/utils/constants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/utils/extra.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/categories/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/settings/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/categories/utils/extra.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/utils/extra.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/response.json" beforeDir="false" afterPath="$PROJECT_DIR$/response.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/response.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/token.json" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,11 +55,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Nikita Korabelnikov\Desktop\vktools\categories\settings" />
       <recent name="C:\Users\Nikita Korabelnikov\Desktop\vktools\categories\utils" />
       <recent name="C:\Users\Nikita Korabelnikov\Desktop\vktools" />
       <recent name="C:\Users\Nikita Korabelnikov\Desktop\vktools\categories\wall" />
       <recent name="C:\Users\Nikita Korabelnikov\Desktop\vktools\categories\newsfeed" />
-      <recent name="C:\Users\Nikita Korabelnikov\Desktop\vktools\categories\comments" />
     </key>
   </component>
   <component name="RunDashboard">

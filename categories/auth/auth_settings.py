@@ -1,4 +1,4 @@
-from categories.settings import Settings
+from categories.settings.settings import Settings
 
 
 class AuthSettings(Settings):
