@@ -1,6 +1,7 @@
 from lxml import etree
 
 from categories.basic_task import Task
+from categories.comments.bot_output import BotOutput
 from categories.settings.bot_settings import BotSettings
 from categories.utils.constants import WALL_CREATE_COMMENT, VK_FEED
 from categories.utils.extra import dict_merge
@@ -11,8 +12,10 @@ class CommentBotTask(Task):
     bot_settings = BotSettings(None, '', 0, 0)
 
     # Перегрузка базового конструктора
+
     def __init__(self, bot_settings):
         self.bot_settings = bot_settings
+        self.output = BotOutput()
         super(CommentBotTask, self).__init__(bot_settings)
 
     def run(self):
@@ -31,8 +34,8 @@ class CommentBotTask(Task):
                                                   {'owner_id': post[0], 'post_id': post[1]})
                 response = self.user_api_request(WALL_CREATE_COMMENT,
                                                  **create_comment_query)
+                self.output.show(response)
                 # Если запрос прошел, то добавляем идентификатор поста в список завершенных задач
-                print(response)
 
     def __get_post_date_from_news_feed(self):
         # Получаем страницу новостей

@@ -1,5 +1,6 @@
 from lxml import etree
 
+from categories.auth.auth_output import AuthOutput
 from categories.auth.auth_settings import AuthSettings
 from categories.basic_task import Task
 from categories.utils.constants import OAUTH_AUTH, REDIRECT_URI, VK_MOBILE, CLIENT_ID, RESPONSE_TYPE, SCOPE, REVOKE, \
@@ -13,6 +14,7 @@ class AuthTask(Task):
 
     def __init__(self, auth_settings):
         self.auth_settings = auth_settings
+        self.output = AuthOutput()
         super(AuthTask, self).__init__(auth_settings)
 
     def run(self):
@@ -28,6 +30,7 @@ class AuthTask(Task):
             self.token = token_string
             # Получение id текущего пользователя
             user_id = self.user_api_request(USERS_GET)['response'][0]['id']
+            self.output.show()
             return self.session, self.token, user_id
 
     def __get_token_request(self):
@@ -49,10 +52,11 @@ class AuthTask(Task):
         xpath_parser = etree.HTML(vk_mobile_html_form_response_text)
         action_string = xpath_parser.xpath('//form')[0].attrib['action']
         # Параметры на запрос авторизации
-        authorization_response = self.site_request(action_string, **{
-            'email': self.auth_settings.login,
-            'pass': self.auth_settings.password
-        }
+        authorization_response = self.site_request(action_string,
+                                                   **{
+                                                       'email': self.auth_settings.login,
+                                                       'pass': self.auth_settings.password
+                                                   }
                                                    )
 
         return authorization_response

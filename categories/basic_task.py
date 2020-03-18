@@ -1,12 +1,15 @@
 import requests
 
 from categories.utils.extra import *
+from categories.utils.output import Output
 
 
 class Task:
     session = requests.session()
     token = ''
     user_id = ''
+
+    output = Output()
 
     def __init__(self, settings):
         params = settings.params
