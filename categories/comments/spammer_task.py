@@ -1,6 +1,7 @@
 import time
 
 from categories.basic_task import Task
+from categories.comments.spammer_output import SpammerOutput
 from categories.settings.spammer_settings import SpammerSettings
 from categories.utils.constants import WALL_GET, WALL_CREATE_COMMENT
 
@@ -10,6 +11,7 @@ class SpammerTask(Task):
 
     def __init__(self, spammer_settings):
         self.spammer_settings = spammer_settings
+        self.output = SpammerOutput()
         super(SpammerTask, self).__init__(spammer_settings)
 
     def run(self):
@@ -29,4 +31,4 @@ class SpammerTask(Task):
                     'message': self.spammer_settings.message
                 })
                 time.sleep(self.spammer_settings.interval)
-                print(result)
+                self.output.show(result)
