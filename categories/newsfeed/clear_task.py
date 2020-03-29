@@ -17,13 +17,12 @@ class ClearLikesTask(Task):
                 break
             # Каждый запрос на 4 типа: если запрос проходит, то цикл останавливается
             for identifier in identifiers:
-                (owner_id, post_id) = cascade_owner_id_post_id(identifier)
                 for request_type in TYPES:
                     # Задержка из-за ограничения по документации метода
                     time.sleep(3)
                     # Запрос на удаление лайка
-                    likes_delete_response = self.__likes_delete_request({'owner_id': owner_id,
-                                                                         'item_id': post_id,
+                    likes_delete_response = self.__likes_delete_request({'owner_id': identifier[0],
+                                                                         'item_id': identifier[1],
                                                                          'type': request_type})
                     try:
                         if int(likes_delete_response['response']['likes']):

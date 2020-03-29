@@ -37,28 +37,34 @@ class ClearCommentsTask(Task):
                                                           **request)
                     responses.append(temp_response)
                     # Задаем смещение
-                    last_post_id = temp_response['response']['items'][-1]['id']
-                    request['start_comment_id'] = last_post_id
+                    try:
+                        last_post_id = temp_response['response']['items'][-1]['id']
+                        request['start_comment_id'] = last_post_id
+                    except Exception:
+                        break
                     if len(temp_response['response']['items']) < 100:
                         break
                     # По документации: частота обращения не чаще, чем в раз в 3 секунды
                     time.sleep(3)
-                # Удаляем комментарий
+                # Удаляем комментарии
                 for response in responses:
-                    for item in response['response']['items']:
-                        if 'from_id' in item:
-                            if self.user_id == item['from_id']:
-                                result = self.user_api_request(
-                                    WALL_DELETE_COMMENT, **{'comment_id': item['id'], 'owner_id': item['owner_id']}
-                                )
-                                self.output.show(result)
-                        for thread_comment in item['thread']['items']:
-                            if self.user_id == thread_comment['from_id']:
-                                result = self.user_api_request(
-                                    WALL_DELETE_COMMENT,
-                                    **{'comment_id': thread_comment['id'], 'owner_id': thread_comment['owner_id']}
-                                )
-                                self.output.show(result)
+                    try:
+                        for item in response['response']['items']:
+                            if 'from_id' in item:
+                                if self.user_id == item['from_id']:
+                                    result = self.user_api_request(
+                                        WALL_DELETE_COMMENT, **{'comment_id': item['id'], 'owner_id': item['owner_id']}
+                                    )
+                                    self.output.show(result)
+                            for thread_comment in item['thread']['items']:
+                                if self.user_id == thread_comment['from_id']:
+                                    result = self.user_api_request(
+                                        WALL_DELETE_COMMENT,
+                                        **{'comment_id': thread_comment['id'], 'owner_id': thread_comment['owner_id']}
+                                    )
+                                    self.output.show(result)
+                    except Exception:
+                        continue
 
     def __get_posts_from_news_feed_section_comments(self):
         feed_response = self.site_request(VK_COMMENTS_FEED).text

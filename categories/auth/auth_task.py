@@ -15,6 +15,7 @@ class AuthTask(Task):
     def __init__(self, auth_settings):
         self.auth_settings = auth_settings
         self.output = AuthOutput()
+        self.session.headers.update({'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:74.0) Gecko/20100101 Firefox/74.0'})
         super(AuthTask, self).__init__(auth_settings)
 
     def run(self):

@@ -2,18 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6cdcd37-94a5-4b2c-910d-366f65e876f8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/categories/auth/auth_output.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/categories/comments/bot_output.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/categories/comments/clear_output.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/categories/comments/spammer_output.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/categories/newsfeed/clear_output.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/categories/utils/output.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/categories/music/converter_task.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/categories/utils/error_handler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/categories/auth/auth_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/auth/auth_task.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/categories/basic_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/basic_task.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/categories/comments/bot_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/comments/bot_task.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/categories/comments/clear_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/comments/clear_task.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/categories/comments/spammer_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/comments/spammer_task.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/categories/newsfeed/clear_task.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/newsfeed/clear_task.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/categories/utils/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/categories/utils/constants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,9 +36,9 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last.edited.regexp" value="post-109658801_video456319550" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/categories/auth" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Python" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -53,12 +49,15 @@
     </option>
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Nikita Korabelnikov\Desktop\vktools\categories\auth" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Nikita Korabelnikov\Desktop\vktools\categories" />
       <recent name="C:\Users\Nikita Korabelnikov\Desktop\vktools\categories\settings" />
       <recent name="C:\Users\Nikita Korabelnikov\Desktop\vktools\categories\utils" />
       <recent name="C:\Users\Nikita Korabelnikov\Desktop\vktools" />
       <recent name="C:\Users\Nikita Korabelnikov\Desktop\vktools\categories\wall" />
-      <recent name="C:\Users\Nikita Korabelnikov\Desktop\vktools\categories\newsfeed" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -223,6 +222,26 @@
           <url>file://$PROJECT_DIR$/category/auth/auth_task/__init__.py</url>
           <line>15</line>
           <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/categories/comments/clear_task.py</url>
+          <line>43</line>
+          <option name="timeStamp" value="156" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/categories/comments/clear_task.py</url>
+          <line>50</line>
+          <option name="timeStamp" value="157" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/categories/newsfeed/clear_task.py</url>
+          <line>23</line>
+          <option name="timeStamp" value="159" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/categories/music/converter_task.py</url>
+          <line>26</line>
+          <option name="timeStamp" value="164" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
