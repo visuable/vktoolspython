@@ -1,5 +1,6 @@
 import requests
 
+from categories.utils.error_handler import parse_error
 from categories.utils.extra import *
 from categories.utils.output import Output
 
@@ -29,19 +30,20 @@ class Task:
         }
         if len(params):
             advanced_methods_initial_api_query = dict_merge(advanced_methods_initial_api_query, params)
-            return wait_for_request(lambda: self.session.post(url, params=advanced_methods_initial_api_query)).json()
-        return wait_for_request(lambda: self.session.post(url, params=advanced_methods_initial_api_query)).json()
+            response = wait_for_request(
+                lambda: self.session.post(url, params=advanced_methods_initial_api_query)).json()
+            error_check = parse_error(response)
+            if error_check:
+                return ''
+            return response
+        response = wait_for_request(lambda: self.session.post(url, params=advanced_methods_initial_api_query)).json()
+        error_check = parse_error(response)
+        if error_check:
+            return ''
+        return response
 
-    def site_request(self, url, request_type='POST', **params):
+    def site_request(self, url, **params):
         if len(params) != 0:
-            if request_type == 'GET':
-                return wait_for_request(lambda: self.session.get(url, params=params))
-            if request_type == 'POST':
-                return wait_for_request(lambda: self.session.post(url, params=params))
-            else:
-                return False
+            return wait_for_request(lambda: self.session.post(url, params=params))
         else:
-            if request_type == 'GET':
-                return wait_for_request(lambda: self.session.get(url))
-            if request_type == 'POST':
-                return wait_for_request(lambda: self.session.post(url))
+            return wait_for_request(lambda: self.session.post(url))
